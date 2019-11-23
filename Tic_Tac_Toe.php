@@ -84,11 +84,12 @@ public $toss;
 
 	//computer turn
 	function computer_Turn()
-	{
+	{	
 		$computer_choose_cell = rand(1,9);
 		if($this->board_array[$computer_choose_cell] == "")
 		{
 		   echo "Computer Plays\n";
+		   self::check_if_i_can_win($computer_choose_cell);
 		   $this->board_array[$computer_choose_cell] = $this->computer_letter;
 		   self::print_Board();
 		   self::player_Turn();
@@ -101,6 +102,107 @@ public $toss;
 		{
 		   self::computer_Turn();
 		}
+	}
+
+	//function to check if i can win 
+	function check_if_i_can_win($computer_choose_cell)
+	{
+		if((($this->board_array[1] && $this->board_array[2]) == $this->computer_letter) && $this->board_array[3] == "")
+		{
+		   $computer_choose_cell = 3;
+		}
+		else if((($this->board_array[1] && $this->board_array[3]) == $this->computer_letter) && $this->board_array[2] == "")
+                {
+                   $computer_choose_cell = 2;
+                }
+		else if((($this->board_array[2] && $this->board_array[3]) == $this->computer_letter) && $this->board_array[1] == "")
+                {
+                   $computer_choose_cell = 1;
+                }
+		else if((($this->board_array[4] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[6] == "")
+                {
+                   $computer_choose_cell = 6;
+                }
+		else if((($this->board_array[4] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[5] == "")
+                {
+                   $computer_choose_cell = 5;
+                }
+		else if((($this->board_array[5] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[4] == "")
+                {
+                   $computer_choose_cell = 4;
+                }
+		else if((($this->board_array[7] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[9] == "")
+                {
+                   $computer_choose_cell = 9;
+                }
+		else if((($this->board_array[7] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[8] == "")
+                {
+                   $computer_choose_cell = 8;
+                }
+		else if((($this->board_array[8] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[7] == "")
+                {
+                   $computer_choose_cell = 7;
+                }
+		else if((($this->board_array[1] && $this->board_array[4]) == $this->computer_letter) && $this->board_array[7] == "")
+                {
+                   $computer_choose_cell = 7;
+                }
+		else if((($this->board_array[1] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[4] == "")
+                {
+                   $computer_choose_cell = 4;
+                }
+		else if((($this->board_array[4] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[1] == "")
+                {
+                   $computer_choose_cell = 1;
+                }
+		else if((($this->board_array[2] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[8] == "")
+                {
+                   $computer_choose_cell = 8;
+                }
+		else if((($this->board_array[2] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[5] == "")
+                {
+                   $computer_choose_cell = 5;
+                }
+		else if((($this->board_array[5] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[2] == "")
+                {
+                   $computer_choose_cell = 2;
+                }
+		else if((($this->board_array[3] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[9] == "")
+                {
+                   $computer_choose_cell = 9;
+                }
+		else if((($this->board_array[3] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[6] == "")
+                {
+                   $computer_choose_cell = 6;
+                }
+		else if((($this->board_array[6] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[3] == "")
+                {
+                   $computer_choose_cell = 3;
+                }
+		else if((($this->board_array[1] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[9] == "")
+                {
+                   $computer_choose_cell = 9;
+                }
+		else if((($this->board_array[1] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[5] == "")
+                {
+                   $computer_choose_cell = 5;
+                }
+		else if((($this->board_array[5] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[1] == "")
+                {
+                   $computer_choose_cell = 1;
+                }
+		else if((($this->board_array[3] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[7] == "")
+                {
+                   $computer_choose_cell = 7;
+                }
+		else if((($this->board_array[3] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[5] == "")
+                {
+                   $computer_choose_cell = 5;
+                }
+		else if((($this->board_array[5] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[3] == "")
+                {
+                   $computer_choose_cell = 3;
+                }
 	}
 
 	//player would like to see the board
@@ -118,7 +220,7 @@ public $toss;
 	function win_Condition()
 	{
 		self::win_ConditionForX();
-		self::win_ConditionFor0();
+		self::win_ConditionForO();
 	}
 
 	function win_ConditionForX()
@@ -141,7 +243,7 @@ public $toss;
                   }
 	}
 
-	function win_ConditionFor0()
+	function win_ConditionForO()
 	{
 		if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "O" ||
                    ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "O" ||
