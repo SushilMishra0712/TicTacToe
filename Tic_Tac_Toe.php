@@ -34,13 +34,13 @@ public $toss;
 		$random_letter = rand(0,1);
 		if($random_letter==0)
 		{
-		   $this->player_letter = "X";
-		   $this->computer_letter = "O";
+		   $this->player_letter ="X";
+		   $this->computer_letter ="O";
 		}
 		else
 		{
-		   $this->player_letter = "O";
-		   $this->computer_letter = "X";
+		   $this->player_letter ="O";
+		   $this->computer_letter ="X";
 		}
 		echo "Letter ".$this->player_letter." assigned to player\n";
 		self::toss_to_play();
@@ -69,9 +69,9 @@ public $toss;
 	{
 	        echo "Which cell number you would like to choose?\n";
 	        fscanf(STDIN,"%d",$cell_number);
-		if($this->board_array[$cell_number] == "")
+		if($this->board_array[$cell_number] =="")
 		{
-		   $this->board_array[$cell_number] = $this->player_letter;
+		   $this->board_array[$cell_number] =$this->player_letter;
 		   self::print_Board();
 		   self::computer_Turn();
 		}
@@ -89,14 +89,14 @@ public $toss;
 	        //first check if computer can win in next move then play
                 self::check_if_i_can_win($computer_choose_cell);
 
-		if($this->board_array[$computer_choose_cell] == "")
+		if($this->board_array[$computer_choose_cell] =="")
 		{
 		   echo "Computer Plays\n";
-		   $this->board_array[$computer_choose_cell] = $this->computer_letter;
+		   $this->board_array[$computer_choose_cell] =$this->computer_letter;
 		   self::print_Board();
 		   self::player_Turn();
 		}
-		else if($this->board_array[$computer_choose_cell] == $this->player_letter)
+		else if($this->board_array[$computer_choose_cell] ==$this->player_letter)
 		{
 		   self::computer_Turn();
 		}
@@ -106,137 +106,137 @@ public $toss;
 		}
 	}
 
-	//function to check if i can win 
+	//function to check if computer can win 
 	function check_if_i_can_win($computer_choose_cell)
 	{
-		if((($this->board_array[1] && $this->board_array[2]) == $this->computer_letter) && $this->board_array[3] == "")
+		if((($this->board_array['1'] && $this->board_array['2']) ==$this->computer_letter) && $this->board_array['3'] =="")
 		{
-		   $computer_choose_cell = 3;
+		   $computer_choose_cell =3;
 		}
-		else if((($this->board_array[1] && $this->board_array[3]) == $this->computer_letter) && $this->board_array[2] == "")
+		else if((($this->board_array['1'] && $this->board_array['3']) ==$this->computer_letter) && $this->board_array['2'] =="")
                 {
-                   $computer_choose_cell = 2;
+                   $computer_choose_cell =2;
                 }
-		else if((($this->board_array[2] && $this->board_array[3]) == $this->computer_letter) && $this->board_array[1] == "")
+		else if((($this->board_array['2'] && $this->board_array['3']) ==$this->computer_letter) && $this->board_array['1'] =="")
                 {
-                   $computer_choose_cell = 1;
+                   $computer_choose_cell =1;
                 }
-		else if((($this->board_array[4] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[6] == "")
+		else if((($this->board_array['4'] && $this->board_array['5']) ==$this->computer_letter) && $this->board_array['6'] =="")
                 {
-                   $computer_choose_cell = 6;
+                   $computer_choose_cell =6;
                 }
-		else if((($this->board_array[4] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[5] == "")
+		else if((($this->board_array['4'] && $this->board_array['6']) ==$this->computer_letter) && $this->board_array['5'] =="")
                 {
-                   $computer_choose_cell = 5;
+                   $computer_choose_cell =5;
                 }
-		else if((($this->board_array[5] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[4] == "")
+		else if((($this->board_array['5'] && $this->board_array['6']) ==$this->computer_letter) && $this->board_array['4'] =="")
                 {
-                   $computer_choose_cell = 4;
+                   $computer_choose_cell =4;
                 }
-		else if((($this->board_array[7] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[9] == "")
+		else if((($this->board_array['7'] && $this->board_array['8']) ==$this->computer_letter) && $this->board_array['9'] =="")
                 {
-                   $computer_choose_cell = 9;
+                   $computer_choose_cell =9;
                 }
-		else if((($this->board_array[7] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[8] == "")
+		else if((($this->board_array['7'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['8'] =="")
                 {
-                   $computer_choose_cell = 8;
+                   $computer_choose_cell =8;
                 }
-		else if((($this->board_array[8] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[7] == "")
+		else if((($this->board_array['8'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['7'] =="")
                 {
-                   $computer_choose_cell = 7;
+                   $computer_choose_cell =7;
                 }
-		else if((($this->board_array[1] && $this->board_array[4]) == $this->computer_letter) && $this->board_array[7] == "")
+		else if((($this->board_array['1'] && $this->board_array['4']) ==$this->computer_letter) && $this->board_array['7'] =="")
                 {
-                   $computer_choose_cell = 7;
+                   $computer_choose_cell =7;
                 }
-		else if((($this->board_array[1] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[4] == "")
+		else if((($this->board_array['1'] && $this->board_array['7']) ==$this->computer_letter) && $this->board_array['4'] =="")
                 {
-                   $computer_choose_cell = 4;
+                   $computer_choose_cell =4;
                 }
-		else if((($this->board_array[4] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[1] == "")
+		else if((($this->board_array['4'] && $this->board_array['7']) ==$this->computer_letter) && $this->board_array['1'] =="")
                 {
-                   $computer_choose_cell = 1;
+                   $computer_choose_cell =1;
                 }
-		else if((($this->board_array[2] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[8] == "")
+		else if((($this->board_array['2'] && $this->board_array['5']) ==$this->computer_letter) && $this->board_array['8'] =="")
                 {
-                   $computer_choose_cell = 8;
+                   $computer_choose_cell =8;
                 }
-		else if((($this->board_array[2] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[5] == "")
+		else if((($this->board_array['2'] && $this->board_array['8']) ==$this->computer_letter) && $this->board_array['5'] =="")
                 {
-                   $computer_choose_cell = 5;
+                   $computer_choose_cell =5;
                 }
-		else if((($this->board_array[5] && $this->board_array[8]) == $this->computer_letter) && $this->board_array[2] == "")
+		else if((($this->board_array['5'] && $this->board_array['8']) ==$this->computer_letter) && $this->board_array['2'] =="")
                 {
-                   $computer_choose_cell = 2;
+                   $computer_choose_cell =2;
                 }
-		else if((($this->board_array[3] && $this->board_array[6]) == $this->computer_letter) && $this->board_array[9] == "")
+		else if((($this->board_array['3'] && $this->board_array['6']) ==$this->computer_letter) && $this->board_array['9'] =="")
                 {
-                   $computer_choose_cell = 9;
+                   $computer_choose_cell =9;
                 }
-		else if((($this->board_array[3] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[6] == "")
+		else if((($this->board_array['3'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['6'] =="")
                 {
-                   $computer_choose_cell = 6;
+                   $computer_choose_cell =6;
                 }
-		else if((($this->board_array[6] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[3] == "")
+		else if((($this->board_array['6'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['3'] =="")
                 {
-                   $computer_choose_cell = 3;
+                   $computer_choose_cell =3;
                 }
-		else if((($this->board_array[1] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[9] == "")
+		else if((($this->board_array['1'] && $this->board_array['5']) ==$this->computer_letter) && $this->board_array['9'] =="")
                 {
-                   $computer_choose_cell = 9;
+                   $computer_choose_cell =9;
                 }
-		else if((($this->board_array[1] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[5] == "")
+		else if((($this->board_array['1'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['5'] =="")
                 {
-                   $computer_choose_cell = 5;
+                   $computer_choose_cell =5;
                 }
-		else if((($this->board_array[5] && $this->board_array[9]) == $this->computer_letter) && $this->board_array[1] == "")
+		else if((($this->board_array['5'] && $this->board_array['9']) ==$this->computer_letter) && $this->board_array['1'] =="")
                 {
-                   $computer_choose_cell = 1;
+                   $computer_choose_cell =1;
                 }
-		else if((($this->board_array[3] && $this->board_array[5]) == $this->computer_letter) && $this->board_array[7] == "")
+		else if((($this->board_array['3'] && $this->board_array['5']) ==$this->computer_letter) && $this->board_array['7'] =="")
                 {
-                   $computer_choose_cell = 7;
+                   $computer_choose_cell =7;
                 }
-		else if((($this->board_array[3] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[5] == "")
+		else if((($this->board_array['3'] && $this->board_array['7']) ==$this->computer_letter) && $this->board_array['5'] =="")
                 {
-                   $computer_choose_cell = 5;
+                   $computer_choose_cell =5;
                 }
-		else if((($this->board_array[5] && $this->board_array[7]) == $this->computer_letter) && $this->board_array[3] == "")
+		else if((($this->board_array['5'] && $this->board_array['7']) == $this->computer_letter) && $this->board_array['3'] =="")
                 {
-                   $computer_choose_cell = 3;
+                   $computer_choose_cell =3;
                 }
 	}
 
 	//player would like to see the board
 	function print_Board()
 	{
-		echo " ".$this->board_array[1]."  | ".$this->board_array[2]."  | ".$this->board_array[3]." \n";
+		echo " ".$this->board_array['1']."  | ".$this->board_array['2']."  | ".$this->board_array['3']." \n";
 		echo "_  _  _  _ \n";
-		echo " ".$this->board_array[4]."  | ".$this->board_array[5]."  | ".$this->board_array[6]." \n";
+		echo " ".$this->board_array['4']."  | ".$this->board_array['5']."  | ".$this->board_array['6']." \n";
 		echo "_  _  _  _  \n";
-		echo " ".$this->board_array[7]."  | ".$this->board_array[8]."  | ".$this->board_array[9]." \n";
+		echo " ".$this->board_array['7']."  | ".$this->board_array['8']."  | ".$this->board_array['9']." \n";
 		self::win_Condition();
 	}
 
 	//condition for winning
 	function win_Condition()
 	{
-		self::win_ConditionForX();
-		self::win_ConditionForO();
+		self::win_ConditionForPlayer();
+		self::win_ConditionForComputer();
 	}
 
-	function win_ConditionForX()
+	function win_ConditionForPlayer()
 	{
-		if($this->board_array[1] && $this->board_array[2] && $this->board_array[2] == 'X' ||
-                   $this->board_array[4] && $this->board_array[5] && $this->board_array[6] == 'X' ||
-                   $this->board_array[7] && $this->board_array[8] && $this->board_array[9] == 'X' ||
-                   $this->board_array[1] && $this->board_array[4] && $this->board_array[7] == 'X' ||
-                   $this->board_array[2] && $this->board_array[5] && $this->board_array[8] == 'X' ||
-                   $this->board_array[3] && $this->board_array[6] && $this->board_array[9] == 'X' ||
-                   $this->board_array[1] && $this->board_array[5] && $this->board_array[9] == 'X' ||
-                   $this->board_array[3] && $this->board_array[5] && $this->board_array[7] == 'X' )
+		if(($this->board_array['1'] && $this->board_array['2'] && $this->board_array['3'] ==$this->player_letter) ||
+                   ($this->board_array['4'] && $this->board_array['5'] && $this->board_array['6'] ==$this->player_letter) ||
+                   ($this->board_array['7'] && $this->board_array['8'] && $this->board_array['9'] ==$this->player_letter) ||
+                   ($this->board_array['1'] && $this->board_array['4'] && $this->board_array['7'] ==$this->player_letter) ||
+                   ($this->board_array['2'] && $this->board_array['5'] && $this->board_array['8'] ==$this->player_letter) ||
+                   ($this->board_array['3'] && $this->board_array['6'] && $this->board_array['9'] ==$this->player_letter) ||
+                   ($this->board_array['1'] && $this->board_array['5'] && $this->board_array['9'] ==$this->player_letter) ||
+                   ($this->board_array['3'] && $this->board_array['5'] && $this->board_array['7'] ==$this->player_letter) )
                   {
-                        echo "Congrats X Wins\n";
+                        echo "Congrats You won\n";
                         exit(0);
                   }
 		  else
@@ -245,18 +245,18 @@ public $toss;
                   }
 	}
 
-	function win_ConditionForO()
+	function win_ConditionForComputer()
 	{
-		if($this->board_array[1] && $this->board_array[2] && $this->board_array[3] == 'O' ||
-                   $this->board_array[4] && $this->board_array[5] && $this->board_array[6] == 'O' ||
-                   $this->board_array[7] && $this->board_array[8] && $this->board_array[9] == 'O' ||
-                   $this->board_array[1] && $this->board_array[4] && $this->board_array[7] == 'O' ||
-                   $this->board_array[2] && $this->board_array[5] && $this->board_array[8] == 'O' ||
-                   $this->board_array[3] && $this->board_array[6] && $this->board_array[9] == 'O' ||
-                   $this->board_array[1] && $this->board_array[5] && $this->board_array[9] == 'O' ||
-                   $this->board_array[3] && $this->board_array[5] && $this->board_array[7] == 'O' )
+		if(($this->board_array['1'] && $this->board_array['2'] && $this->board_array['3'] ==$this->computer_letter) ||
+                   ($this->board_array['4'] && $this->board_array['5'] && $this->board_array['6'] ==$this->computer_letter) ||
+                   ($this->board_array['7'] && $this->board_array['8'] && $this->board_array['9'] ==$this->computer_letter) ||
+                   ($this->board_array['1'] && $this->board_array['4'] && $this->board_array['7'] ==$this->computer_letter) ||
+                   ($this->board_array['2'] && $this->board_array['5'] && $this->board_array['8'] ==$this->computer_letter) ||
+                   ($this->board_array['3'] && $this->board_array['6'] && $this->board_array['9'] ==$this->computer_letter) ||
+                   ($this->board_array['1'] && $this->board_array['5'] && $this->board_array['9'] ==$this->computer_letter) ||
+                   ($this->board_array['3'] && $this->board_array['5'] && $this->board_array['7'] ==$this->computer_letter) )
                   {
-                        echo "Congrats O Wins\n";
+                        echo "Computer is the winner\n";
                         exit(0);
                   }
                 else
