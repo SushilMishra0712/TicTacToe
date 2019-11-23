@@ -87,10 +87,19 @@ public $toss;
 	{	
 		$computer_choose_cell = rand(1,9);
 	        //first check if computer can win in next move then play
-                self::check_for_win($computer_choose_cell,$this->computer_letter);
+		self::check_for_win($computer_choose_cell,$this->computer_letter);
 
-		//second check if opponent can win then block them
-		self::check_for_win($computer_choose_cell,$this->player_letter);
+                if(self::check_for_win($computer_choose_cell,$this->computer_letter)==false)
+		{
+		     //second check if opponent can win then block them
+                     self::check_for_win($computer_choose_cell,$this->player_letter);
+
+		     if(self::check_for_win($computer_choose_cell,$this->player_letter)==false)
+			{
+			  //next check for available corners
+			  self::choose_available_corners($computer_choose_cell);
+			}
+		}
 
 		if($this->board_array[$computer_choose_cell] =="")
 		{
@@ -208,6 +217,29 @@ public $toss;
                 {
                    $computer_choose_cell =3;
                 }
+		return true;
+	}
+
+	//function to choose available corners
+	function choose_available_corners($computer_choose_cell)
+	{
+		if($this->board_array['1'] =="")
+		{
+		   $computer_choose_cell =1;
+		}
+		else if($this->board_array['3'] =="")
+		{
+		   $computer_choose_cell =3;
+		}
+		else if($this->board_array['7'] =="")
+		{
+		   $computer_choose_cell =7;
+		}
+		else if($this->board_array['9'] =="")
+		{
+		   $computer_choose_cell =9;
+		}
+		return true;
 	}
 
 	//player would like to see the board
