@@ -86,10 +86,12 @@ public $toss;
 	function computer_Turn()
 	{	
 		$computer_choose_cell = rand(1,9);
+	        //first check if computer can win in next move then play
+                self::check_if_i_can_win($computer_choose_cell);
+
 		if($this->board_array[$computer_choose_cell] == "")
 		{
 		   echo "Computer Plays\n";
-		   self::check_if_i_can_win($computer_choose_cell);
 		   $this->board_array[$computer_choose_cell] = $this->computer_letter;
 		   self::print_Board();
 		   self::player_Turn();
@@ -225,14 +227,14 @@ public $toss;
 
 	function win_ConditionForX()
 	{
-		if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "X" ||
-                   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "X" ||
-                   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "X" ||
-                   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "X" ||
-                   ($this->board_array[2] && $this->board_array[5] && $this->board_array[8]) == "X" ||
-                   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "X" ||
-                   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "X" ||
-                   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "X" )
+		if($this->board_array[1] && $this->board_array[2] && $this->board_array[2] == 'X' ||
+                   $this->board_array[4] && $this->board_array[5] && $this->board_array[6] == 'X' ||
+                   $this->board_array[7] && $this->board_array[8] && $this->board_array[9] == 'X' ||
+                   $this->board_array[1] && $this->board_array[4] && $this->board_array[7] == 'X' ||
+                   $this->board_array[2] && $this->board_array[5] && $this->board_array[8] == 'X' ||
+                   $this->board_array[3] && $this->board_array[6] && $this->board_array[9] == 'X' ||
+                   $this->board_array[1] && $this->board_array[5] && $this->board_array[9] == 'X' ||
+                   $this->board_array[3] && $this->board_array[5] && $this->board_array[7] == 'X' )
                   {
                         echo "Congrats X Wins\n";
                         exit(0);
@@ -245,14 +247,14 @@ public $toss;
 
 	function win_ConditionForO()
 	{
-		if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "O" ||
-                   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "O" ||
-                   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "O" ||
-                   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "O" ||
-                   ($this->board_array[2] && $this->board_array[5] && $this->board_array[8]) == "O" ||
-                   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "O" ||
-                   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "O" ||
-                   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "O" )
+		if($this->board_array[1] && $this->board_array[2] && $this->board_array[3] == 'O' ||
+                   $this->board_array[4] && $this->board_array[5] && $this->board_array[6] == 'O' ||
+                   $this->board_array[7] && $this->board_array[8] && $this->board_array[9] == 'O' ||
+                   $this->board_array[1] && $this->board_array[4] && $this->board_array[7] == 'O' ||
+                   $this->board_array[2] && $this->board_array[5] && $this->board_array[8] == 'O' ||
+                   $this->board_array[3] && $this->board_array[6] && $this->board_array[9] == 'O' ||
+                   $this->board_array[1] && $this->board_array[5] && $this->board_array[9] == 'O' ||
+                   $this->board_array[3] && $this->board_array[5] && $this->board_array[7] == 'O' )
                   {
                         echo "Congrats O Wins\n";
                         exit(0);
