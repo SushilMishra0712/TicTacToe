@@ -35,11 +35,11 @@ public $toss;
 		if($random_letter==0)
 		{
 		   $this->player_letter = "X";
-		   $this->computer_letter = "0";
+		   $this->computer_letter = "O";
 		}
 		else
 		{
-		   $this->player_letter = "0";
+		   $this->player_letter = "O";
 		   $this->computer_letter = "X";
 		}
 		echo "Letter ".$this->player_letter." assigned to player\n";
@@ -93,6 +93,10 @@ public $toss;
 		   self::print_Board();
 		   self::player_Turn();
 		}
+		else if($this->board_array[$computer_choose_cell] == $this->player_letter)
+		{
+		   self::computer_Turn();
+		}
 		else
 		{
 		   self::computer_Turn();
@@ -113,30 +117,50 @@ public $toss;
 	//condition for winning
 	function win_Condition()
 	{
+		self::win_ConditionForX();
+		self::win_ConditionFor0();
+	}
+
+	function win_ConditionForX()
+	{
 		if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "X" ||
-		   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "X" ||
-		   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "X" ||
-		   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "X" ||
+                   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "X" ||
+                   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "X" ||
+                   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "X" ||
                    ($this->board_array[2] && $this->board_array[5] && $this->board_array[8]) == "X" ||
- 		   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "X" ||
-		   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "X" ||
-		   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "X" )
-		  {
-			echo "Congrats X Wins\n";
-		  }
-		else if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "0" ||
-                   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "0" ||
-                   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "0" ||
-                   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "0" ||
-                   ($this->board_array[2] && $this->board_array[5] && $this->board_array[8]) == "0" ||
-                   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "0" ||
-                   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "0" ||
-                   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "0" )
+                   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "X" ||
+                   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "X" ||
+                   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "X" )
                   {
-                        echo "Congrats 0 Wins\n";
+                        echo "Congrats X Wins\n";
+                        exit(0);
+                  }
+		  else
+                  {
+                        echo "\n";
                   }
 	}
-	
+
+	function win_ConditionFor0()
+	{
+		if(($this->board_array[1] && $this->board_array[2] && $this->board_array[3]) == "O" ||
+                   ($this->board_array[4] && $this->board_array[5] && $this->board_array[6]) == "O" ||
+                   ($this->board_array[7] && $this->board_array[8] && $this->board_array[9]) == "O" ||
+                   ($this->board_array[1] && $this->board_array[4] && $this->board_array[7]) == "O" ||
+                   ($this->board_array[2] && $this->board_array[5] && $this->board_array[8]) == "O" ||
+                   ($this->board_array[3] && $this->board_array[6] && $this->board_array[9]) == "O" ||
+                   ($this->board_array[1] && $this->board_array[5] && $this->board_array[9]) == "O" ||
+                   ($this->board_array[3] && $this->board_array[5] && $this->board_array[7]) == "O" )
+                  {
+                        echo "Congrats O Wins\n";
+                        exit(0);
+                  }
+                else
+                  {
+                        echo "\n";
+                  }
+	}
+
 }
 
 $object_ticTacToe = new TicTacToe;
