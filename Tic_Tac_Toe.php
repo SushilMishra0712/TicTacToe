@@ -22,4 +22,17 @@ else
 }
 echo "Letter ".$player_letter." assigned to player\n";
 
+//toss for who will play first
+echo "Press enter to toss";
+fscanf(STDIN,"%s");
+$toss = rand(0,1);
+if($toss==0)
+{
+echo "Player will play first\n";
+}
+else
+{
+echo "Computer will play first\n";
+}
+
 ?>
