@@ -262,14 +262,22 @@ public $toss;
 
 	function win_ConditionForPlayer()
 	{
-		if(($this->board_array['1'] && $this->board_array['2'] && $this->board_array['3'] ==$this->player_letter) ||
-                   ($this->board_array['4'] && $this->board_array['5'] && $this->board_array['6'] ==$this->player_letter) ||
-                   ($this->board_array['7'] && $this->board_array['8'] && $this->board_array['9'] ==$this->player_letter) ||
-                   ($this->board_array['1'] && $this->board_array['4'] && $this->board_array['7'] ==$this->player_letter) ||
-                   ($this->board_array['2'] && $this->board_array['5'] && $this->board_array['8'] ==$this->player_letter) ||
-                   ($this->board_array['3'] && $this->board_array['6'] && $this->board_array['9'] ==$this->player_letter) ||
-                   ($this->board_array['1'] && $this->board_array['5'] && $this->board_array['9'] ==$this->player_letter) ||
-                   ($this->board_array['3'] && $this->board_array['5'] && $this->board_array['7'] ==$this->player_letter) )
+		if((($this->board_array['1'] == $this->board_array['2']) && ($this->board_array['2'] == $this->board_array['3']) &&
+		    ($this->board_array['3'] == $this->player_letter)) ||
+                   (($this->board_array['4'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['6']) &&
+		    ($this->board_array['6'] == $this->player_letter)) ||
+                   (($this->board_array['7'] == $this->board_array['8']) && ($this->board_array['8'] == $this->board_array['9']) &&
+		    ($this->board_array['9'] == $this->player_letter)) ||
+                   (($this->board_array['1'] == $this->board_array['4']) && ($this->board_array['4'] == $this->board_array['7']) &&
+		    ($this->board_array['7'] == $this->player_letter)) ||
+                   (($this->board_array['2'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['8']) &&
+		    ($this->board_array['8'] == $this->player_letter)) ||
+                   (($this->board_array['3'] == $this->board_array['6']) && ($this->board_array['6'] == $this->board_array['9']) &&
+	            ($this->board_array['9'] == $this->player_letter)) ||
+                   (($this->board_array['1'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['9']) &&
+		    ($this->board_array['9'] == $this->player_letter)) ||
+                   (($this->board_array['3'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['7']) &&
+		    ($this->board_array['7'] == $this->player_letter)) )
                   {
                         echo "Congrats You won\n";
                         exit(0);
@@ -282,14 +290,22 @@ public $toss;
 
 	function win_ConditionForComputer()
 	{
-		if(($this->board_array['1'] && $this->board_array['2'] && $this->board_array['3'] ==$this->computer_letter) ||
-                   ($this->board_array['4'] && $this->board_array['5'] && $this->board_array['6'] ==$this->computer_letter) ||
-                   ($this->board_array['7'] && $this->board_array['8'] && $this->board_array['9'] ==$this->computer_letter) ||
-                   ($this->board_array['1'] && $this->board_array['4'] && $this->board_array['7'] ==$this->computer_letter) ||
-                   ($this->board_array['2'] && $this->board_array['5'] && $this->board_array['8'] ==$this->computer_letter) ||
-                   ($this->board_array['3'] && $this->board_array['6'] && $this->board_array['9'] ==$this->computer_letter) ||
-                   ($this->board_array['1'] && $this->board_array['5'] && $this->board_array['9'] ==$this->computer_letter) ||
-                   ($this->board_array['3'] && $this->board_array['5'] && $this->board_array['7'] ==$this->computer_letter) )
+		   if((($this->board_array['1'] == $this->board_array['2']) && ($this->board_array['2'] == $this->board_array['3']) &&
+                    ($this->board_array['3'] == $this->computer_letter)) ||
+                   (($this->board_array['4'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['6']) &&
+                    ($this->board_array['6'] == $this->computer_letter)) ||
+                   (($this->board_array['7'] == $this->board_array['8']) && ($this->board_array['8'] == $this->board_array['9']) &&
+                    ($this->board_array['9'] == $this->computer_letter)) ||
+                   (($this->board_array['1'] == $this->board_array['4']) && ($this->board_array['4'] == $this->board_array['7']) &&
+                    ($this->board_array['7'] == $this->computer_letter)) ||
+                   (($this->board_array['2'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['8']) &&
+                    ($this->board_array['8'] == $this->computer_letter)) ||
+                   (($this->board_array['3'] == $this->board_array['6']) && ($this->board_array['6'] == $this->board_array['9']) &&
+                    ($this->board_array['9'] == $this->computer_letter)) ||
+                   (($this->board_array['1'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['9']) &&
+                    ($this->board_array['9'] == $this->computer_letter)) ||
+                   (($this->board_array['3'] == $this->board_array['5']) && ($this->board_array['5'] == $this->board_array['7']) &&
+                    ($this->board_array['7'] == $this->computer_letter)) )
                   {
                         echo "Computer is the winner\n";
                         exit(0);
