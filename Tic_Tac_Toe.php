@@ -35,4 +35,11 @@ else
 echo "Computer will play first\n";
 }
 
+//player would like to see the board
+echo " ".$board_array[1]."  | ".$board_array[2]."  | ".$board_array[3]." \n";
+echo "_  _  _  _ \n";
+echo " ".$board_array[4]."  | ".$board_array[5]."  | ".$board_array[6]." \n";
+echo "_  _  _  _  \n";
+echo " ".$board_array[7]."  | ".$board_array[8]."  | ".$board_array[9]." \n";
+
 ?>
