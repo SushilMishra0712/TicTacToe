@@ -18,7 +18,7 @@ if($random_letter==0)
 }
 else
 {
-   $player_letter = "0";
+   $player_letter = "O";
 }
 echo "Letter ".$player_letter." assigned to player\n";
 
