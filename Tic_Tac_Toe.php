@@ -316,6 +316,20 @@ public $toss;
                   }
 	}
 
+<<<<<<< HEAD
+=======
+//assign letter to player
+echo "Press enter to play game";
+fscanf(STDIN,"%s");
+$random_letter = rand(0,1);
+if($random_letter==0)
+{
+   $player_letter = "X";
+}
+else
+{
+   $player_letter = "O";
+>>>>>>> UC_2-AssignLetterToPlayer
 }
 
 $object_ticTacToe = new TicTacToe;
