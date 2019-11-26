@@ -80,6 +80,67 @@ public $toss;
 	function computer_Turn()
 	{
 		$computer_choose_cell = rand(1,9);
+		$first_check = false;
+		$second_check = false;
+
+		//first check if computer can win then play that move
+		for($cell=1;$cell<=9;$cell++)
+		{
+			for($adjacent_cell=1;$adjacent_cell<=8;$adjacent_cell++)
+			{
+			   if(($this->board_array[$cell]==$this->board_array[$adjacent_cell]) && 
+				($this->board_array[$adjacent_cell]==$this->computer_letter) && $this->board_array[$adjacent_cell+1]=="")
+			     {
+				$computer_choose_cell=$adjacent_cell+1;
+				$first_check = true;
+			     }
+			}
+		}
+
+		//second check if opponent can win then play to block it
+		if($first_check==false)
+		{
+		    for($cell=1;$cell<=9;$cell++)
+                    {
+                        for($adjacent_cell=1;$adjacent_cell<=8;$adjacent_cell++)
+                        {
+                           if(($this->board_array[$cell]==$this->board_array[$adjacent_cell]) && 
+                                ($this->board_array[$adjacent_cell]==$this->player_letter) && $this->board_array[$adjacent_cell+1]=="")
+                             {
+                                $computer_choose_cell=$adjacent_cell+1;
+				$second_check = true;
+                             }
+                        }
+                    }
+		}
+
+		//choose one of available corners
+		if($second_check==false)
+		{
+			if($this->board_array['1']=="")
+			{
+		        	$computer_choose_cell=1;
+			}
+			else if($this->board_array['3']=="")
+			{
+				$computer_choose_cell=3;
+			}
+			else if($this->board_array['7']=="")
+			{
+				$computer_choose_cell=7;
+			}
+			else if($this->board_array['9']=="")
+			{
+				$computer_choose_cell=9;
+			}
+
+			//if corners not available check for center
+			else if($this->board_array['5']=="")
+			{
+				$computer_choose_cell=5;
+			}
+		}
+
 		if($this->board_array[$computer_choose_cell] == "")
 		{
 		   echo "Computer Plays\n";
