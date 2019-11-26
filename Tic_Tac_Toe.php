@@ -7,6 +7,9 @@ public $board_array;
 public $player_letter;
 public $computer_letter;
 public $toss;
+public $first_check;
+public $second_check;
+public $computer_choose_cell;
 	function __construct()
 	{
 		$this->row_of_board = 3;
@@ -14,6 +17,9 @@ public $toss;
 		$this->player_letter = null;
 		$this->computer_letter = null;
 		$this->toss = null;
+		$this->first_check =0;
+		$this->second_check =0;
+		$this->computer_choose_cell = null;
 	}
 
 	//resetting the board
@@ -79,82 +85,72 @@ public $toss;
 	//computer turn
 	function computer_Turn()
 	{
-		$computer_choose_cell = rand(1,9);
-		$first_check = false;
-		$second_check = false;
-
-		//first check if computer can win then play that move
-		for($cell=1;$cell<=9;$cell++)
-		{
-			for($adjacent_cell=1;$adjacent_cell<=8;$adjacent_cell++)
-			{
-			   if(($this->board_array[$cell]==$this->board_array[$adjacent_cell]) && 
-				($this->board_array[$adjacent_cell]==$this->computer_letter) && $this->board_array[$adjacent_cell+1]=="")
-			     {
-				$computer_choose_cell=$adjacent_cell+1;
-				$first_check = true;
-			     }
-			}
-		}
-
-		//second check if opponent can win then play to block it
-		if($first_check==false)
-		{
-		    for($cell=1;$cell<=9;$cell++)
-                    {
-                        for($adjacent_cell=1;$adjacent_cell<=8;$adjacent_cell++)
-                        {
-                           if(($this->board_array[$cell]==$this->board_array[$adjacent_cell]) && 
-                                ($this->board_array[$adjacent_cell]==$this->player_letter) && $this->board_array[$adjacent_cell+1]=="")
-                             {
-                                $computer_choose_cell=$adjacent_cell+1;
-				$second_check = true;
-                             }
-                        }
-                    }
-		}
-
-		//choose one of available corners
-		if($second_check==false)
-		{
-			if($this->board_array['1']=="")
-			{
-		        	$computer_choose_cell=1;
-			}
-			else if($this->board_array['3']=="")
-			{
-				$computer_choose_cell=3;
-			}
-			else if($this->board_array['7']=="")
-			{
-				$computer_choose_cell=7;
-			}
-			else if($this->board_array['9']=="")
-			{
-				$computer_choose_cell=9;
-			}
-
-			//if corners not available check for center
-			else if($this->board_array['5']=="")
-			{
-				$computer_choose_cell=5;
-			}
-		}
-
-		if($this->board_array[$computer_choose_cell] == "")
-		{
-		   echo "Computer Plays\n";
-		   $this->board_array[$computer_choose_cell] = $this->computer_letter;
-		}
-		else if($this->board_array[$computer_choose_cell] == $this->player_letter)
-		{
-		   self::computer_Turn();
-		}
-		else
+		$this->first_check =0;
+                $this->second_check =0;
+		$this->computer_choose_cell = rand(1,9);
+		if($this->board_array[$this->computer_choose_cell] == $this->player_letter)
 		{
 		   self::computer_Turn();
 		}
 	}
+
+	//first check if computer or player can win
+	function check_if_anyone_can_win($letter,$which_check)
+	{
+              for($cell=1;$cell<=9;$cell++)
+              {
+                      for($adjacent_cell=1;$adjacent_cell<=8;$adjacent_cell++)
+                      {
+                         if(($this->board_array[$cell]==$this->board_array[$adjacent_cell]) && 
+                              ($this->board_array[$adjacent_cell]==$letter) && $this->board_array[$adjacent_cell+1]=="")
+                           {
+                              $this->computer_choose_cell=$adjacent_cell+1;
+                              $which_check =1;
+                           }
+                      }
+              }
+
+              if($this->board_array[$this->computer_choose_cell] == "")
+              {
+      		        echo "Computer Plays\n";
+                        $this->board_array[$this->computer_choose_cell] = $this->computer_letter;
+              }
+
+	}
+
+	//choose one of corners if available
+	function choose_corner()
+        {
+              if($this->board_array['1']=="")
+              {
+                      $this->computer_choose_cell=1;
+              }
+              else if($this->board_array['3']=="")
+              {
+                      $this->computer_choose_cell=3;
+              }
+              else if($this->board_array['7']=="")
+              {
+                      $this->computer_choose_cell=7;
+              }
+              else if($this->board_array['9']=="")
+              {
+                      $this->computer_choose_cell=9;
+              }
+
+              //if corners not available check for center
+              else if($this->board_array['5']=="")
+              {
+                      $this->computer_choose_cell=5;
+              }
+	      //put computer_letter into the board_array
+	       if($this->board_array[$this->computer_choose_cell] == "")
+              {
+                        echo "Computer Plays\n";
+                        $this->board_array[$this->computer_choose_cell] = $this->computer_letter;
+              }
+        }
+
 
 	//player would like to see the board
 	function print_Board()
@@ -236,6 +232,20 @@ while(1>0)
 	else
 	{
 		$object_ticTacToe->computer_Turn();
+
+		//first check if computer can win then play that move
+		$object_ticTacToe->check_if_anyone_can_win($object_ticTacToe->computer_letter,$object_ticTacToe->first_check);
+		if($object_ticTacToe->first_check==1)
+		{
+			//second check if opponent can win then play to block it
+			$object_ticTacToe->check_if_anyone_can_win($object_ticTacToe->player_letter,$object_ticTacToe->second_check);
+
+			if($object_ticTacToe->second_check==1)
+			{
+				//check for one of corners if available then check for center
+				$object_ticTacToe->choose_corner();
+			} 
+		}
 	}
 	$object_ticTacToe->print_Board();
 	$object_ticTacToe->win_Condition();
