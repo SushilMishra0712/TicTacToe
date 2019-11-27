@@ -233,10 +233,13 @@ public $computer_choose_cell;
 	}
 }
 
+//create object of class TicTacToe
 $object_ticTacToe = new TicTacToe;
 $object_ticTacToe->reset_Board();
 $object_ticTacToe->assign_Letter();
 $object_ticTacToe->toss_to_PLay();
+
+//play till game is over
 while(1>0)
 {
 	if($object_ticTacToe->toss == 0)
