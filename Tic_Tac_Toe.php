@@ -144,13 +144,27 @@ public $computer_choose_cell;
                       $this->computer_choose_cell=5;
               }
 	      //put computer_letter into the board_array
-	       if($this->board_array[$this->computer_choose_cell] == "")
+	      if($this->board_array[$this->computer_choose_cell] == "")
               {
                         echo "Computer Plays\n";
                         $this->board_array[$this->computer_choose_cell] = $this->computer_letter;
               }
         }
 
+	//computer will choose any of side if corner and center is not available
+	function choose_side()
+	{
+		for($cell=1;$cell<=9;$cell++)
+		{
+			if($cell%2==0)
+			{
+			   if($this->board_array[$cell]=="")
+			   {
+		              $this->computer_choose_cell=$cell;
+			   }
+			}
+		}
+	}
 
 	//player would like to see the board
 	function print_Board()
@@ -244,6 +258,9 @@ while(1>0)
 			{
 				//check for one of corners if available then check for center
 				$object_ticTacToe->choose_corner();
+
+				//check for side cells if corners and center not available
+				$object_ticTacToe->choose_side();
 			} 
 		}
 	}
